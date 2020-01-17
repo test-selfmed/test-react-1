@@ -62,7 +62,7 @@ class App extends Component {
                 ]
             }
         };
-        const output4 = this.find(input4, "greg");
+        const output4 = this.find(input4, "greg"); // ["greg", "greg", "greg", "greg"]
         console.log(output4);
 
         // exo 3
