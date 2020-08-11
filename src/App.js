@@ -83,21 +83,29 @@ class App extends Component {
 
 
     arrayToObject(input) { //  [{value: 'FR', label: "France"}]
+        return input.reduce((acc, item) => {
+            acc[item.value] = item.label;
+            return acc;
+        }, {});
     }
 
     find(input, name) {
+     
     }
 
     temperatureAverage(input) {
+        return input.reduce((acc, val) => { return acc + val.temp / input.length;}, 0);
     }
 
     sortValue(input) {
     }
 
     delStar() {
+
     }
 
     addStar() {
+
     }
 
     render() {
