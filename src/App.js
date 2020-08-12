@@ -83,21 +83,54 @@ class App extends Component {
 
 
     arrayToObject(input) { //  [{value: 'FR', label: "France"}]
+        return input.reduce((acc, item) => {
+            acc[item.value] = item.label;
+            return acc;
+        }, {});
     }
 
-    find(input, name) {
+    find(input, name)
+    {
+
+        let result = [];
+        if (typeof input  === "string")
+        {
+            if (input === name){
+                // We found a string matching the name, we push in the result array
+                result.push(input);
+            }
+
+        }
+        else if (input instanceof Array) {
+            input.forEach(val => {
+               result =  result.concat(this.find(val, name));
+            })
+        }
+        else if (!(input instanceof Array)) {
+            for (const [key, value] of Object.entries(input)) {
+                result = result.concat(this.find(value, name));
+            }
+        }
+        return result;
     }
 
     temperatureAverage(input) {
+        return input.reduce((acc, val) => { return acc + val.temp / input.length;}, 0);
     }
 
     sortValue(input) {
     }
 
     delStar() {
+        if (this.state.maxStars >= 0 && this.state.stars > 0) {
+            this.setState({stars: this.state.stars - 1});
+       }
     }
 
     addStar() {
+        if (this.state.stars < this.state.maxStars) {
+            this.setState({stars: this.state.stars + 1})
+        }
     }
 
     render() {
