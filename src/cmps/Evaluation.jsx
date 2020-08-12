@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
-import {
-    Star as StarFilledIcon,
-    StarBorder as StarEmptyIcon
-} from "@material-ui/icons";
+import React, { Component } from 'react';
+import {Star} from './Star';
 
 export const Evaluation = ({stars, maxStars}) => {
-    return <><StarEmptyIcon/> : <StarFilledIcon/></>;
+    let res = [];
+    for (let i = 0; i < maxStars; i++) {
+       res.push( (i < stars) ? <Star state={true}/> : <Star state={false}/>);
+    }
+    return res;
 };
- 
+
